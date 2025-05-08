@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -13,12 +14,20 @@ export default function App({ Component, pageProps }: AppProps) {
     // router.replace("/test");
   };
 
+  useEffect(() => {
+    // test 페이지에 대한 prefetch
+    router.prefetch("/test");
+  }, []);
+
   return (
     <>
       <header>
         <Link href={"/"}>Index</Link>
         &nbsp;
-        <Link href={"/search"}>Search</Link>
+        {/* prefetch를 명시적으로 해제할 수도 있음. */}
+        <Link href={"/search"} prefetch={false}>
+          Search
+        </Link>
         &nbsp;
         <Link href={"/book/1"}>Book1</Link>
         <div>
