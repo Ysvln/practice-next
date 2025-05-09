@@ -7,8 +7,8 @@ export default function SearchableLayout({
 }: {
   children: ReactNode;
 }) {
-  const [search, setSearch] = useState("");
   const router = useRouter();
+  const [search, setSearch] = useState("");
 
   const q = router.query.q as string;
 
@@ -21,7 +21,7 @@ export default function SearchableLayout({
   };
 
   const onSubmit = () => {
-    if (!search || q == search) return;
+    if (!search || q === search) return;
     router.push(`/search?q=${search}`);
   };
 
@@ -35,10 +35,10 @@ export default function SearchableLayout({
     <div>
       <div className={style.searchbar_container}>
         <input
-          placeholder="검색어를 입력해 주세요."
-          onChange={onChangeSearch}
-          onKeyDown={onKeyDown}
           value={search}
+          onKeyDown={onKeyDown}
+          onChange={onChangeSearch}
+          placeholder="검색어를 입력하세요 ..."
         />
         <button onClick={onSubmit}>검색</button>
       </div>
