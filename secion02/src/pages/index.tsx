@@ -20,6 +20,9 @@ export const getStaticProps = async () => {
       allBooks,
       recoBooks,
     },
+    // revalidate : 재검증하다 => ISR 방식으로 3초마다 재생성됨
+    // 일정 시간을 주기로 최신의 데이터를 갱신할 수 있음
+    revalidate: 3,
   };
 };
 
