@@ -1,11 +1,13 @@
 import { InferGetStaticPropsType } from "next";
 import { ReactNode } from "react";
-// CSS Module
 import style from "./index.module.css";
 import SearchableLayout from "@/components/searchable-layout";
 import BookItem from "@/components/book-item";
 import fetchBooks from "./lib/fetch-books";
 import fetchRandomBooks from "./lib/fetch-random-books";
+
+// document로부터 불러오는 Head컴포넌트는 _document.tsx에서 사용
+import Head from "next/head";
 
 //ssg 방식
 export const getStaticProps = async () => {
@@ -30,10 +32,17 @@ export default function Home({
   allBooks,
   recoBooks,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log(allBooks);
-
   return (
     <div className={style.container}>
+      <Head>
+        <title>한입북스</title>
+        <meta property="og:image" content="/thumbnail.png" />
+        <meta property="og:title" content="한입북스" />
+        <meta
+          property="og:description"
+          content="한입 북스에 등록된 도서들을 만나보세요."
+        />
+      </Head>
       <section>
         <h3>지금 추천하는 도서</h3>
         {recoBooks.map((book) => (
