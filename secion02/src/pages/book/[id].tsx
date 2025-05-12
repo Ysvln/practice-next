@@ -24,8 +24,8 @@ export const getStaticPaths = () => {
     ],
     // fallback 상태 : 페이지 컴포넌트가 아직 서버로부터 데이터를 전달 받지 못한 상태
     // false 존재하지 않는 경로면 404
-    // blocking : 즉시 생성 (like ssr)
-    // true : 즉시 생성 + 페이지만 미리 반환
+    // blocking : 즉시 생성 (like ssr) 실시간으로 페이지를 사전 렌더링하여 응답한다.
+    // true : SSR 방식 즉시 생성 + 데이터가 없는 폴백 상태의 페이지만 미리 반환
     fallback: false,
   };
 };
