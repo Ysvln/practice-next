@@ -4,7 +4,8 @@ import { BookData } from "@/types";
 
 async function AllBooks() {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`,
+    { cache: "no-cache" }
   );
 
   if (!response.ok) {
@@ -24,7 +25,10 @@ async function AllBooks() {
 
 async function RecoBooks() {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/random`
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/random`,
+    {
+      cache: "force-cache",
+    }
   );
 
   if (!response.ok) {
