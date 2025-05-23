@@ -1,4 +1,12 @@
+import { notFound } from "next/navigation";
 import style from "./page.module.css";
+
+// generateStaticParams 으로 내보내진 1,2,3 외에 4번으로 이동하는 경우 not found로 이동함.
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return [{ id: "1" }, { id: "2" }, { id: "3" }];
+}
 
 export default async function Page({
   params,
@@ -10,6 +18,9 @@ export default async function Page({
   );
 
   if (!response.ok) {
+    if (response.status === 404) {
+      notFound();
+    }
     return <div>오류가 발생했습니다.</div>;
   }
 

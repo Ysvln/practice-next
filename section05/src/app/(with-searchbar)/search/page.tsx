@@ -7,7 +7,8 @@ export default async function Page({
   searchParams: { q?: string };
 }) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/search?q=${searchParams.q}`
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/search?q=${searchParams.q}`,
+    { cache: "force-cache" }
   );
 
   if (!response.ok) {
